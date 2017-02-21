@@ -1,4 +1,3 @@
-var annotator_const_user = '{{user_name}}';
 
 jQuery(function ($) {
   var element= $('{{annotator_content}}');
@@ -8,7 +7,8 @@ jQuery(function ($) {
            .annotator('setupPlugins', null, {
                Auth:
               {
-                  tokenUrl: '/wp-json/annotator/v1/api/token'
+                  tokenUrl: '/wp-json/annotator/v1/api/token',
+                  nonce: '{{nonce}}'
               },
                Store: {
                    prefix: '{{annotator_store_location}}',

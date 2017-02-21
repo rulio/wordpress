@@ -69,7 +69,8 @@ class OkfnAnnotFactory extends OkfnBase {
       'annotator_content' => $this->annotator_content,
       'uri' => $this->uri,
       'user_name'=> $user_name,
-      'annotator_store_location' => WP_ANNOTATOR_STORE
+      'annotator_store_location' => WP_ANNOTATOR_STORE,
+      'nonce'=>wp_create_nonce('wp_rest')
     );
 
     return $template_vars;

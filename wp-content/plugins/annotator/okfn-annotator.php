@@ -42,16 +42,20 @@ if (!is_admin()) {
   $injector->inject();
 }
 function annotator_token(){
+
+  $user = wp_get_current_user();
   $settings = new OkfnAnnotSettings();
   $payload = array();
   $payload['consumerKey'] = 'b8b5e94d4ad441ae9ff0aa7ce5d06ee2';
-  $payload['userId']      = "alice";
+  $payload['userId']      = $user->user_login;
   $payload['issuedAt']    = date('c');
   $payload['ttl']         = 84600;
 
-  $encoded =  JWT::encode($payload, $settings->get_option('annotator_token_key'));
+  if($user->exists()){
+    $encoded =  JWT::encode($payload, $settings->get_option('annotator_token_key'));
+    echo $encoded;
+  }
   exit;
-
 }
 function annotator_base(){
   $out = array(
